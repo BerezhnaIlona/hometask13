@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ukr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/task_style.css" />
+  </head>
+  <body>
+    <h1>Задача 1.</h1>
+    <p>Генерація всіх підмножин: Реалізуйте рекурсивну функцію, яка генерує всі можливі підмножини заданого масиву.</p>
+    <a href="../index.html" class="back-link">Повернутися на головну сторінку</a>
+    <script>
+      if (confirm('Почати тестування?')) {
+        //1. Приклад масива
+        function checkStep(step, arr) {
+          if (step === 3) document.write(`${arr}<br>`);
+          else {
+            checkStep(step + 1, [...arr, 1]);
+            checkStep(step + 1, [...arr, 2]);
+            checkStep(step + 1, [...arr, 3]);
+          }
+        }
+        checkStep(0, []);
+      }
+    </script>
+  </body>
+</html>

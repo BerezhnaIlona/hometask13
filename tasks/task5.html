@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ukr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/task_style.css" />
+  </head>
+  <body>
+    <h1>Задача 5.</h1>
+    <p>З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одне значення від заданого мінімального до заданого максимального. Якщо значення досягне максимального, то наступним буде мінімальне значення. З використанням цієї функції реалізувати перебір номерів місяців.</p>
+    <a href="../index.html" class="back-link">Повернутися на головну сторінку</a>
+    <script>
+      if (confirm('Почати тестування?')) {
+        let count = 21;
+        function getMonthNumbValue(value) {
+          let currentMonthNumb = value;
+
+          function getMonthNum() {
+            return currentMonthNumb;
+          }
+
+          function incrementMonthNum() {
+            if (currentMonthNumb <= 12) {
+              currentMonthNumb++;
+            }
+          }
+          function decrementMonthNum() {
+            if (currentMonthNumb > 12) {
+              currentMonthNumb = 1;
+            }
+          }
+
+          return [getMonthNum, incrementMonthNum, decrementMonthNum];
+        }
+
+        const [getMonth, incMonth, decMonth] = getMonthNumbValue(0);
+        const arrMonth = ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'];
+        for (let i = 1; i < count; i++) {
+          document.write(`${arrMonth[getMonth()]}<br>`);
+          incMonth();
+          decMonth();
+        }
+      }
+    </script>
+  </body>
+</html>

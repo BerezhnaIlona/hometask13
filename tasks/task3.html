@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ukr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/task_style.css" />
+  </head>
+  <body>
+    <h1>Задача 3.</h1>
+    <p>Виведіть всі можливі наступні комбінації ходів користувачів у грі“Хрестики-нулики”, починаючи з деякої заданої ситуації (тобто маємо двовимірний масив з елементами : 0 - нулик, Х - хрестик, пробіл - ще не зайнято, і вам треба самостійно вивести всі можливі шляхи заповнення ще незаповнених клітинок (де пробіли). Поки можна не підраховувати чи вже є 3 хрестики чи 3 нулики у рядок.)</p>
+    <a href="../index.html" class="back-link">Повернутися на головну сторінку</a>
+    <script>
+      if (confirm('Почати тестування?')) {
+        //1. Приклад масива
+
+        const gameArr = [
+          ['0', ' ', ' '],
+          [' ', 'X', ' '],
+          ['0', ' ', ' '],
+        ];
+
+        function getFreeCells(matrix) {
+          const freeCells = [];
+
+          //Пусті ячейки
+          for (let i = 0; i < matrix.length; i++) {
+            for (let j = 0; j < matrix[i].length; j++) {
+              if (matrix[i][j] === ' ') {
+                freeCells.push([i, j]);
+              }
+            }
+          }
+          return freeCells;
+        }
+
+        function fillCombinations(matrix, freeCells, step = 0, arr = []) {
+          //
+          if (step === freeCells.length) {
+            const newMatrix = matrix.map((row) => [...row]); // копія массива
+
+            arr.forEach(([x, y, value]) => {
+              newMatrix[x][y] = value;
+            });
+
+            document.write('<table>');
+            newMatrix.forEach((row) => {
+              document.write('<tr>');
+              row.forEach((cell) => {
+                document.write(`<td>${cell}</td>`);
+              });
+              document.write('</tr>');
+            });
+            document.write('</table><br>');
+
+            return;
+          }
+
+          // створюємо координати
+          const [x, y] = freeCells[step];
+
+          // Рекурсія
+          fillCombinations(matrix, freeCells, step + 1, [...arr, [x, y, 'X']]);
+          fillCombinations(matrix, freeCells, step + 1, [...arr, [x, y, '0']]);
+        }
+
+        const freeCells = getFreeCells(gameArr);
+        fillCombinations(gameArr, freeCells);
+      }
+    </script>
+  </body>
+</html>

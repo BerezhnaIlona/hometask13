@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ukr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/task_style.css" />
+  </head>
+  <body>
+    <h1>Задача 6.</h1>
+    <p>З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одну букву наперед заданого слова. З використанням нього розробити гру «Прекладач». Виводимо для користувача опис цього слова і по одну букву користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.</p>
+    <a href="../index.html" class="back-link">Повернутися на головну сторінку</a>
+    <script>
+      if (confirm('Почати тестування?')) {
+        //1. Приклад масива
+
+        function getWordComparis(ind) {
+          let commandWord = 'book';
+          let rightAnswer = 0;
+          let userOption;
+
+          function countAnswer() {
+            for (let i = 0; i < commandWord.length; i++) {
+              userOption = prompt(`Що знаходиться в бібліотеці у великій кількості. Відповідь на англійській мові. Введіть букву номер ${ind}`, '');
+              if (commandWord[i] === userOption) {
+                rightAnswer++;
+                ind++;
+              } else ind++;
+            }
+          }
+
+          function guessingResult() {
+            let gettingResult;
+            if (rightAnswer === commandWord.length) {
+              gettingResult = document.write(`Ваша відповідь вірна і загадане слово ${commandWord}`);
+            } else gettingResult = document.write(`Ви не вгадали слово ${commandWord}`);
+          }
+
+          return [countAnswer, guessingResult];
+        }
+        const [answerNumb, guesRes] = getWordComparis(1);
+        answerNumb();
+        guesRes();
+      }
+    </script>
+  </body>
+</html>

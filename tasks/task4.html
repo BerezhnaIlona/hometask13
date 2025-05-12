@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ukr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/task_style.css" />
+  </head>
+  <body>
+    <h1>Задача 4.</h1>
+    <p>Дано масив хлопців і дівчат вивести всі можливі комбінації для танців з хлопців і дівчат.</p>
+    <a href="../index.html" class="back-link">Повернутися на головну сторінку</a>
+    <script>
+      if (confirm('Почати тестування?')) {
+        //1. Приклад масива
+
+        const namesArr = [
+          ['Mukola', 'Ivan', 'Artem'],
+          ['Lida', 'Olena', 'Nina'],
+        ];
+        function danceCouple(step, arr, newArr = []) {
+          if (step === arr.length) {
+            document.write(`${newArr.join(' + ')}<br>`);
+          } else {
+            for (let i = 0; i < arr[step].length; i++) {
+              danceCouple(step + 1, arr, [...newArr, arr[step][i]]);
+            }
+          }
+        }
+        danceCouple(0, namesArr);
+      }
+    </script>
+  </body>
+</html>
